@@ -1,7 +1,9 @@
 <?php
 	
+	include_once 'connect.php';
+	
 	if(isset($_POST['submit'])){
-
+	
 	$temp = explode(".", $_FILES["file"]["name"]);
 
 		if ($_FILES["file"]["error"] > 0) 
@@ -15,6 +17,8 @@
 			} else {
 			  move_uploaded_file($_FILES["file"]["tmp_name"],
 			  "uploads/" . $_FILES["file"]["name"]);
+			  $image = "uploads/" . $_FILES["file"]["name"];
+			  $query = $mysqli->query("INSERT INTO uploads VALUES ('','','$image')");
 			}
 		  }
 	}
